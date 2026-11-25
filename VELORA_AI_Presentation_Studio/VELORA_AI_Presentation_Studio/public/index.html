@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VELORA — turn your ideas into beautiful presentations with AI.">
+  <title>VELORA — AI Presentation Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">V</span><span>VELORA<span class="brand-ai">AI</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active"><span>✦</span> Create presentation</button>
+      <button class="nav-item" id="libraryNav"><span>▤</span> My presentations</button>
+      <div class="side-bottom"><div class="help-card"><div class="help-icon">✧</div><b>Your ideas, elevated.</b><p>Turn a blank page into a compelling story.</p></div><div class="user-row"><div class="avatar">V</div><div><b>VELORA Studio</b><small>Personal workspace</small></div><span class="dots">•••</span></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b>New presentation</b></div><div class="top-actions"><span class="status-dot"></span><span id="apiStatus">Studio ready</span><button class="avatar small">V</button></div></header>
+      <section class="hero">
+        <div class="eyebrow"><span class="spark">✦</span> YOUR AI PRESENTATION STUDIO</div>
+        <h1>Big ideas deserve<br><em>beautiful slides.</em></h1>
+        <p>From a simple prompt to a polished presentation.<br>Let AI shape your next great story.</p>
+      </section>
+      <section class="workspace-grid">
+        <div class="create-panel panel">
+          <div class="panel-heading"><div><div class="step-label">01 — START WITH AN IDEA</div><h2>What are we presenting?</h2></div><span class="magic">✧ AI POWERED</span></div>
+          <label for="topic">Presentation topic</label>
+          <textarea id="topic" rows="3" placeholder="e.g. The future of sustainable fashion, Introduction to digital marketing, or The impact of AI in education..."></textarea>
+          <div class="upload-zone" id="dropZone"><input type="file" id="sourceFile" accept=".pdf,.docx,.txt" hidden><div class="upload-icon">↑</div><div><b>Bring your own material</b><p>Drop a PDF, DOCX, or TXT file, or <button class="text-button" id="browseBtn">browse files</button></p><small id="fileName">Up to 12 MB</small></div></div>
+          <div class="form-grid">
+            <div class="field"><label for="count">Number of slides</label><select id="count"><option>5</option><option selected>8</option><option>10</option><option>12</option><option>15</option><option>20</option></select></div>
+            <div class="field"><label for="language">Language</label><select id="language"><option>English</option><option>Indonesian</option><option>Spanish</option><option>French</option></select></div>
+            <div class="field"><label for="audience">Audience</label><select id="audience"><option>General audience</option><option>University students</option><option>Academic / researchers</option><option>Business professionals</option><option>High school students</option></select></div>
+            <div class="field"><label for="tone">Presentation tone</label><select id="tone"><option>Professional</option><option>Academic</option><option>Creative</option><option>Persuasive</option><option>Simple and friendly</option></select></div>
+          </div>
+          <div class="field"><label for="instructions">Anything else? <span class="optional">OPTIONAL</span></label><input id="instructions" placeholder="e.g. Include examples, focus on recent research..."></div>
+          <button class="generate-btn" id="generateBtn"><span>✦</span> Generate presentation <span class="arrow">↗</span></button>
+          <div class="secure-note">✧ Your files are processed for this request and then removed.</div>
+        </div>
+        <div class="right-column">
+          <div class="panel theme-panel"><div class="step-label">02 — MAKE IT YOURS</div><h3>Choose your aesthetic</h3><p class="muted">Pick a visual direction for your slides.</p>
+            <div class="theme-options">
+              <button class="theme-option selected" data-theme="midnight"><span class="theme-preview midnight"><i></i><i></i><i></i></span><b>Midnight</b><small>Bold & refined</small></button>
+              <button class="theme-option" data-theme="ivory"><span class="theme-preview ivory"><i></i><i></i><i></i></span><b>Editorial</b><small>Warm & elegant</small></button>
+              <button class="theme-option" data-theme="ocean"><span class="theme-preview ocean"><i></i><i></i><i></i></span><b>Ocean</b><small>Fresh & focused</small></button>
+              <button class="theme-option" data-theme="clean"><span class="theme-preview clean"><i></i><i></i><i></i></span><b>Minimal</b><small>Clean & simple</small></button>
+            </div>
+          </div>
+          <div class="panel tips-panel"><div class="tip-icon">✧</div><div><b>A little prompt magic</b><p>Specific topics create stronger presentations. Add your audience, purpose, and the key message you want them to remember.</p></div></div>
+          <div class="mini-stat"><div class="stat-icon">✦</div><div><b>Thoughtful by design</b><span>Clear structure. Strong storytelling.</span></div></div>
+        </div>
+      </section>
+      <section class="editor-section hidden" id="editorSection">
+        <div class="editor-head"><div><div class="step-label">03 — YOUR PRESENTATION</div><h2 id="deckTitle">Your presentation</h2><p class="muted" id="deckSubtitle">Review and refine your slides before exporting.</p></div><div class="editor-actions"><button class="secondary-btn" id="regenerateBtn">↻ New draft</button><button class="download-btn" id="downloadBtn">↓ Export PPTX</button></div></div>
+        <div class="editor-layout"><div class="slide-list" id="slideList"></div><div class="slide-workspace"><div class="slide-canvas" id="slideCanvas"></div><div class="edit-fields"><div class="field"><label for="editTitle">SLIDE TITLE</label><input id="editTitle"></div><div class="field"><label for="editBullets">CONTENT — ONE POINT PER LINE</label><textarea id="editBullets" rows="5"></textarea></div><div class="field"><label for="editNotes">SPEAKER NOTES</label><textarea id="editNotes" rows="3"></textarea></div></div></div></div>
+        <p class="editor-hint">Select a slide to edit it. Changes are included in your exported PowerPoint.</p>
+      </section>
+      <footer>© 2025 VELORA AI <span>MAKE EVERY IDEA COUNT.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="/app.js"></script>
+</body></html>
